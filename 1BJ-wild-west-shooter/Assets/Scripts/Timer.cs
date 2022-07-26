@@ -6,14 +6,15 @@ public class Timer : MonoBehaviour
 {
     private float timeValue;
 
-    public GameObject manager;
-    public GameManager GameManager;
+    private GameObject manager;
+    private GameManager GameManager;
     
     // Start is called before the first frame update
     void Start()
     {
         GameManager = manager.GetComponent<GameManager>();
-        //timeValue = 6 - (1 * ((roundNumber-1)/10));
+        // Start at 5 seconds Round 1, and less thereafter
+        timeValue = 6 - (1 * ((manager.GetComponent<GameManager>().roundNumber-1)/10));
     }
 
     // Update is called once per frame
@@ -23,8 +24,9 @@ public class Timer : MonoBehaviour
         {
             timeValue -= Time.deltaTime;
         }
-        //else (
-            //roundOver = true;
-        //)
+        else 
+        {
+            manager.GetComponent<GameManager>().roundOver = true;
+        }
     }
 }

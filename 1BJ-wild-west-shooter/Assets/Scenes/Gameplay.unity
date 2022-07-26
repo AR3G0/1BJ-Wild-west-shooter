@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundNumber: 0
+  roundOver: 0
 --- !u!4 &449873297
 Transform:
   m_ObjectHideFlags: 0
