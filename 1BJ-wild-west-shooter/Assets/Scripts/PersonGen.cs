@@ -34,9 +34,9 @@ public class PersonGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // display correct apparel
+        // display correct apparel per above
 
 
-        // generate animations and text bubbles
+        // generate face animations and text bubbles (emergent tells)
     }
 }

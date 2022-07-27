@@ -36,7 +36,18 @@ public class GameManager : MonoBehaviour
         // Player Shoots
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            roundOver = true;
+            if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Gameplay"))
+            {
+                roundOver = true;
+            }
+            else if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("MainMenu")) 
+            {
+                SceneManager.LoadScene("Gameplay");
+            }
+            else if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("GameOver")) 
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
 
         if (roundOver == true)
@@ -48,7 +59,7 @@ public class GameManager : MonoBehaviour
             {
                 // animation of player being shot
                 // then go to lose screen
-                // possible lose screen: 
+                // possible lose screen: player's own funeral
             }
             // LOSE: shot innocent
             else if ((playerShot = true) && (generator.GetComponent<PersonGen>().guilty == false))
@@ -59,7 +70,7 @@ public class GameManager : MonoBehaviour
             // WIN: didn't shoot innocent
             else if ((playerShot = false) && (generator.GetComponent<PersonGen>().guilty == false))
             {
-                // animation or sound effect of innocent being relieved
+                // animation or sound effect of innocent being relieved (phew)
                 // then next person
             }
             // WIN: shot baddie
@@ -69,7 +80,7 @@ public class GameManager : MonoBehaviour
                 // then next person
             }
 
-
+            // wait two seconds
             // reload the gameplay scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             roundOver = false;
