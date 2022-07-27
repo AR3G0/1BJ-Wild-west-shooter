@@ -33,11 +33,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        // Player Shoots
+        // The Player Button 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Gameplay"))
             {
+                playerShot = true;
                 roundOver = true;
             }
             else if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("MainMenu")) 
