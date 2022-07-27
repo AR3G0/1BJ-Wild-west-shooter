@@ -13,14 +13,16 @@ public class PersonGen : MonoBehaviour
     private int decorum;
     private int item;
 
-    // fetch the game manager
-    private GameObject manager;
-    private GameManager GameManager;
+    // initialize the game manager var
+    /*
+    public GameObject manager;
+    public GameManager gameManager;
+    */
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager = manager.GetComponent<GameManager>();
+        //gameManager = manager.GetComponent<GameManager>();
 
         guilty = (Random.value > 0.5f);
 

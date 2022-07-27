@@ -6,13 +6,13 @@ public class Timer : MonoBehaviour
 {
     private float timeValue;
 
-    private GameObject manager;
-    private GameManager GameManager;
+    public GameObject manager;
+    public GameManager gameManager;
     
     // Start is called before the first frame update
     void Start()
     {
-        GameManager = manager.GetComponent<GameManager>();
+        gameManager = manager.GetComponent<GameManager>();
         // Start at 5 seconds Round 1, and less thereafter
         timeValue = 6 - (1 * ((manager.GetComponent<GameManager>().roundNumber-1)/10));
     }

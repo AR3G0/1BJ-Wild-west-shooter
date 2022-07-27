@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     private int pointsForRound;
     
     // fetch the person generator
-    private GameObject generator;
-    private PersonGen gen_script;
+    public GameObject generator;
+    public PersonGen genS;
 
     private bool playerShot;
 
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gen_script = generator.GetComponent<PersonGen>();
+        genS = generator.GetComponent<PersonGen>();
 
         playerShot = false;
     }
@@ -56,27 +56,27 @@ public class GameManager : MonoBehaviour
             // determine outcome
 
             // LOSE: didn't shoot baddie
-            if ((playerShot = false) && (generator.GetComponent<PersonGen>().guilty == true))
+            if ((playerShot = false) && (genS.guilty == true))
             {
                 // animation of player being shot
                 // then go to lose screen
                 // possible lose screen: player's own funeral
             }
             // LOSE: shot innocent
-            else if ((playerShot = true) && (generator.GetComponent<PersonGen>().guilty == false))
+            else if ((playerShot = true) && (genS.guilty == false))
             {
                 // go to lose screen
                 // possible lose screen: player attends their funeral
             }
 
             // WIN: didn't shoot innocent
-            else if ((playerShot = false) && (generator.GetComponent<PersonGen>().guilty == false))
+            else if ((playerShot = false) && (genS.guilty == false))
             {
                 // animation or sound effect of innocent being relieved (phew)
                 // then next person
             }
             // WIN: shot baddie
-            else if ((playerShot = true) && (generator.GetComponent<PersonGen>().guilty == true))
+            else if ((playerShot = true) && (genS.guilty == true))
             {
                 // animation and sound effect of baddie going down
                 // then next person
