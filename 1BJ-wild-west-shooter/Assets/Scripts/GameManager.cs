@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
             // wait two seconds
             // reload the gameplay scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            playerShot = false;
             roundOver = false;
         }
     }
