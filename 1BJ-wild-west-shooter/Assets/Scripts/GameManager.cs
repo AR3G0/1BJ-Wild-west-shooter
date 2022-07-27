@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             // LOSE: shot innocent
             else if ((playerShot = true) && (generator.GetComponent<PersonGen>().guilty == false))
             {
+                // go to lose screen
                 // possible lose screen: player attends their funeral
             }
 
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour
                 // then next person
             }
             // WIN: shot baddie
-            if ((playerShot = true) && (generator.GetComponent<PersonGen>().guilty == true))
+            else if ((playerShot = true) && (generator.GetComponent<PersonGen>().guilty == true))
             {
                 // animation and sound effect of baddie going down
                 // then next person
