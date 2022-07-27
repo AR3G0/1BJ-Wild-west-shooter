@@ -7,29 +7,41 @@ public class GameManager : MonoBehaviour
 {
     public int roundNumber;
     public bool roundOver = false;
+    private bool nextRoundInvoked = false;
 
     private int playerScore;
     private int pointsForRound;
 
-    // fetch the person generator
+    // fetch the round timer
     public GameObject clock;
     private Timer timer;
 
+    // fetch the person generator
     public GameObject person;
     private PersonGen personGen;
-    private bool newSceneFlag = false;
 
-    private bool playerShot;
+    private bool newSceneFlag = false;
+    private bool playerShot = false;
+
+    private static GameManager managerInstance;
 
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        // No duplicate managers
+        if (managerInstance == null) {
+            managerInstance = this;
+        } 
+        else {
+            DestroyObject(gameObject);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerShot = false;
+        
     }
 
     // Update is called once per frame
@@ -38,17 +50,21 @@ public class GameManager : MonoBehaviour
         // The Player Button 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("Gameplay"))
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("Gameplay"))
             {
                 playerShot = true;
                 roundOver = true;
             }
-            else if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("MainMenu")) 
+            // Press play
+            else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("MainMenu")) 
             {
+                roundOver = false;
+                newSceneFlag = false;
                 SceneManager.LoadScene("Gameplay");
             }
-            else if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("GameOver")) 
+            else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("GameOver")) 
             {
+                roundOver = false;
                 newSceneFlag = false;
                 SceneManager.LoadScene("MainMenu");
             }
@@ -56,13 +72,14 @@ public class GameManager : MonoBehaviour
 
         if (newSceneFlag == false && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gameplay"))
         {
+            // Create round components
             GameObject newClock = Instantiate(clock);
             GameObject newPerson = Instantiate(person);
             personGen = newPerson.GetComponent<PersonGen>();
             newSceneFlag = true;
         }
 
-        if (roundOver == true)
+        if ((roundOver == true) && (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gameplay")))
         {
             // determine outcome
             // LOSE: didn't shoot baddie
@@ -95,10 +112,26 @@ public class GameManager : MonoBehaviour
             }
 
             // wait two seconds
-            StartCoroutine(NextRound());
+            //StartCoroutine(NextRound());
+            
+            if (nextRoundInvoked == false)
+            {
+                Invoke("NextRound", 2.0f);
+                nextRoundInvoked = true;
+            }
         }
     }
+    
+    void NextRound()
+    {
+        newSceneFlag = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        nextRoundInvoked = false;
+        playerShot = false;
+        roundOver = false;
+    }
 
+    /*
     IEnumerator NextRound()
     {
         // reload the gameplay scene
@@ -109,4 +142,5 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
     }
+    */
 }
