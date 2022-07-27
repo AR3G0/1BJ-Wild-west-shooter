@@ -12,6 +12,7 @@ public class PersonGen : MonoBehaviour
     private int clothes;
     private int decorum;
     private int item;
+    SpriteRenderer sprite;
 
     // initialize the game manager var
     /*
@@ -22,9 +23,20 @@ public class PersonGen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
+
         //gameManager = manager.GetComponent<GameManager>();
 
         guilty = (Random.value > 0.5f);
+        if (guilty)
+        {
+            sprite.color = new Color(1, 0, 0, 1);
+        }
+        else
+        {
+            sprite.color = new Color(0, 0, 1, 1);
+        }
+        Debug.Log("I am: " + guilty.ToString());
 
         hat = Random.Range(1, 6);
         hair = Random.Range(1, 6);

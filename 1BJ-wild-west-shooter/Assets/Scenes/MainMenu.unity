@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 1395106705}
   m_Layer: 0
   m_Name: GameManagerObject
-  m_TagString: Untagged
+  m_TagString: manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,6 +945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundNumber: 0
   roundOver: 0
+  clock: {fileID: 1866204854912602622, guid: e8bb86e0e2e11b54f8b5ade46271e266, type: 3}
+  person: {fileID: 5822725244742233215, guid: 87f29da5444eb954cb20ddb19d843478, type: 3}
 --- !u!4 &1395106706
 Transform:
   m_ObjectHideFlags: 0

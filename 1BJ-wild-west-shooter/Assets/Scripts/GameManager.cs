@@ -10,10 +10,14 @@ public class GameManager : MonoBehaviour
 
     private int playerScore;
     private int pointsForRound;
-    
+
     // fetch the person generator
-    public GameObject generator;
-    public PersonGen genS;
+    public GameObject clock;
+    private Timer timer;
+
+    public GameObject person;
+    private PersonGen personGen;
+    private bool newSceneFlag = false;
 
     private bool playerShot;
 
@@ -25,8 +29,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        genS = generator.GetComponent<PersonGen>();
-
         playerShot = false;
     }
 
@@ -47,46 +49,64 @@ public class GameManager : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene () == SceneManager.GetSceneByName ("GameOver")) 
             {
+                newSceneFlag = false;
                 SceneManager.LoadScene("MainMenu");
             }
+        }
+
+        if (newSceneFlag == false && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gameplay"))
+        {
+            GameObject newClock = Instantiate(clock);
+            GameObject newPerson = Instantiate(person);
+            personGen = newPerson.GetComponent<PersonGen>();
+            newSceneFlag = true;
         }
 
         if (roundOver == true)
         {
             // determine outcome
-
             // LOSE: didn't shoot baddie
-            if ((playerShot = false) && (genS.guilty == true))
+            if ((playerShot == false) && (personGen.guilty == true))
             {
                 // animation of player being shot
                 // then go to lose screen
                 // possible lose screen: player's own funeral
+                SceneManager.LoadScene("GameOver");
             }
             // LOSE: shot innocent
-            else if ((playerShot = true) && (genS.guilty == false))
+            else if ((playerShot == true) && (personGen.guilty == false))
             {
                 // go to lose screen
                 // possible lose screen: player attends their funeral
+                SceneManager.LoadScene("GameOver");
             }
 
             // WIN: didn't shoot innocent
-            else if ((playerShot = false) && (genS.guilty == false))
+            else if ((playerShot == false) && (personGen.guilty == false))
             {
                 // animation or sound effect of innocent being relieved (phew)
                 // then next person
             }
             // WIN: shot baddie
-            else if ((playerShot = true) && (genS.guilty == true))
+            else if ((playerShot == true) && (personGen.guilty == true))
             {
                 // animation and sound effect of baddie going down
                 // then next person
             }
 
             // wait two seconds
-            // reload the gameplay scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            playerShot = false;
-            roundOver = false;
+            StartCoroutine(NextRound());
         }
+    }
+
+    IEnumerator NextRound()
+    {
+        // reload the gameplay scene
+        newSceneFlag = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        playerShot = false;
+        roundOver = false;
+
+        yield return new WaitForSeconds(2f);
     }
 }
