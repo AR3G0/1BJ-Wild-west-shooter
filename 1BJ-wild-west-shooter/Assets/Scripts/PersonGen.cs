@@ -14,18 +14,18 @@ public class PersonGen : MonoBehaviour
     private int item;
     SpriteRenderer sprite;
 
-    // initialize the game manager var
-    /*
+    // game manager
     public GameObject manager;
     public GameManager gameManager;
-    */
 
     // Start is called before the first frame update
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        // fetch game manager
+        manager = GameObject.FindWithTag("manager");
+        gameManager = manager.GetComponent<GameManager>();
 
-        //gameManager = manager.GetComponent<GameManager>();
+        sprite = GetComponent<SpriteRenderer>();
 
         guilty = (Random.value > 0.5f);
         if (guilty)
@@ -38,7 +38,7 @@ public class PersonGen : MonoBehaviour
         }
         Debug.Log("I am: " + guilty.ToString());
 
-        hat = Random.Range(1, 6);
+        hat = Random.Range(1, 4);
         hair = Random.Range(1, 6);
         clothes = Random.Range(1, 6);
         decorum = Random.Range(1, 6);
@@ -49,8 +49,26 @@ public class PersonGen : MonoBehaviour
     void Update()
     {
         // display correct apparel per above
+        switch (hat)
+        {
+            case 1:
+                //Sprite.Create();
+                break;
+            case 2:
+                ;
+                break;
+            case 3:
+                ;
+                break;
 
+        }
 
-        // generate face animations and text bubbles (emergent tells)
+        // End of round effects
+        if (gameManager.resultsTrigger == true)
+        {
+
+        }
+
+        // generate face animations and speech bubbles (emergent tells)
     }
 }

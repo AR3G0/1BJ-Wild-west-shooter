@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - manager
+  - timer
+  - persongen
+  - timerUI
   layers:
   - Default
   - TransparentFX

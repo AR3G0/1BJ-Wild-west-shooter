@@ -7,18 +7,21 @@ public class GameManager : MonoBehaviour
 {
     public int roundNumber;
     public bool roundOver = false;
-    private bool nextRoundInvoked = false;
+    public bool resultsTrigger = false;
+    public bool nextRoundInvoked = false;
 
-    private int playerScore;
-    private int pointsForRound;
+    public int score = 0;
+    public int highScore = 0;
+
+    private bool playerLost = false;
 
     // fetch the round timer
     public GameObject clock;
-    private Timer timer;
+    public Timer timer;
 
     // fetch the person generator
     public GameObject person;
-    private PersonGen personGen;
+    public PersonGen personGen;
 
     private bool newSceneFlag = false;
     private bool playerShot = false;
@@ -50,20 +53,25 @@ public class GameManager : MonoBehaviour
         // The Player Button 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // Shoot
             if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("Gameplay"))
             {
                 playerShot = true;
                 roundOver = true;
             }
-            // Press play
+            // Press Play
             else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("MainMenu")) 
             {
+                playerShot = false;
                 roundOver = false;
                 newSceneFlag = false;
                 SceneManager.LoadScene("Gameplay");
             }
+            // Continue
             else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("GameOver")) 
             {
+                score = 0;
+                playerShot = false;
                 roundOver = false;
                 newSceneFlag = false;
                 SceneManager.LoadScene("MainMenu");
@@ -75,8 +83,15 @@ public class GameManager : MonoBehaviour
             // Create round components
             GameObject newClock = Instantiate(clock);
             GameObject newPerson = Instantiate(person);
+            timer = newClock.GetComponent<Timer>();
             personGen = newPerson.GetComponent<PersonGen>();
             newSceneFlag = true;
+        }
+
+        // trigger lasts only one frame: for activating results elsewhere
+        if (resultsTrigger == true)
+        {
+            resultsTrigger = false;
         }
 
         if ((roundOver == true) && (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gameplay")))
@@ -85,6 +100,7 @@ public class GameManager : MonoBehaviour
             // LOSE: didn't shoot baddie
             if ((playerShot == false) && (personGen.guilty == true))
             {
+                playerLost = true;
                 // animation of player being shot
                 // then go to lose screen
                 // possible lose screen: player's own funeral
@@ -93,6 +109,7 @@ public class GameManager : MonoBehaviour
             // LOSE: shot innocent
             else if ((playerShot == true) && (personGen.guilty == false))
             {
+                playerLost = true;
                 // go to lose screen
                 // possible lose screen: player attends their funeral
                 SceneManager.LoadScene("GameOver");
@@ -111,36 +128,25 @@ public class GameManager : MonoBehaviour
                 // then next person
             }
 
-            // wait two seconds
-            //StartCoroutine(NextRound());
-            
-            if (nextRoundInvoked == false)
+            // wait two seconds before launching next round
+            if ((nextRoundInvoked == false) && (playerLost == false))
             {
                 Invoke("NextRound", 2.0f);
+                resultsTrigger = true;
                 nextRoundInvoked = true;
             }
         }
+
     }
     
     void NextRound()
     {
         newSceneFlag = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        roundNumber += 1;
         nextRoundInvoked = false;
         playerShot = false;
         roundOver = false;
     }
 
-    /*
-    IEnumerator NextRound()
-    {
-        // reload the gameplay scene
-        newSceneFlag = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        playerShot = false;
-        roundOver = false;
-
-        yield return new WaitForSeconds(2f);
-    }
-    */
 }
