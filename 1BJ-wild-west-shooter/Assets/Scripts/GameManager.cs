@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     // fetch the person generator
     public GameObject person;
     public PersonGen personGen;
+    public Vector3 daSpot;
+
 
     private bool newSceneFlag = false;
     private bool playerShot = false;
@@ -81,7 +83,7 @@ public class GameManager : MonoBehaviour
         {
             // Create round components
             //GameObject newClock = Instantiate(clock);
-            GameObject newPerson = Instantiate(person);
+            GameObject newPerson = Instantiate(person, new Vector3(daSpot.x, daSpot.y, -1f), Quaternion.identity);
             //timer = newClock.GetComponent<Timer>();
             personGen = newPerson.GetComponent<PersonGen>();
             newSceneFlag = true;
