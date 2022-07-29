@@ -12,7 +12,10 @@ public class PersonGen : MonoBehaviour
     private int clothes;
     private int decorum;
     private int item;
-    SpriteRenderer sprite;
+
+    // initialie the child and head object so we can change their color
+    //private GameObject head;
+    private GameObject body;
 
     // game manager
     public GameObject manager;
@@ -25,16 +28,18 @@ public class PersonGen : MonoBehaviour
         manager = GameObject.FindWithTag("manager");
         gameManager = manager.GetComponent<GameManager>();
 
-        sprite = GetComponent<SpriteRenderer>();
+        //fetch the head and body object so we can change their sprite render
+        Transform head = transform.Find("Head");
+        SpriteRenderer headSprite = head.GetComponent<SpriteRenderer>();
 
         guilty = (Random.value > 0.5f);
         if (guilty)
         {
-            sprite.color = new Color(1, 0, 0, 1);
+            headSprite.color = new Color(1, 0, 0, 1);
         }
         else
         {
-            sprite.color = new Color(0, 0, 1, 1);
+            headSprite.color = new Color(0, 0, 1, 1);
         }
         Debug.Log("I am: " + guilty.ToString());
 
