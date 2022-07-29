@@ -15,9 +15,8 @@ public class GameManager : MonoBehaviour
 
     private bool playerLost = false;
 
-    // fetch the round timer
-    public GameObject clock;
-    public Timer timer;
+    // The timer remaning in a round for the timer script
+    public float timeRemaining;
 
     // fetch the person generator
     public GameObject person;
@@ -81,9 +80,9 @@ public class GameManager : MonoBehaviour
         if (newSceneFlag == false && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gameplay"))
         {
             // Create round components
-            GameObject newClock = Instantiate(clock);
+            //GameObject newClock = Instantiate(clock);
             GameObject newPerson = Instantiate(person);
-            timer = newClock.GetComponent<Timer>();
+            //timer = newClock.GetComponent<Timer>();
             personGen = newPerson.GetComponent<PersonGen>();
             newSceneFlag = true;
         }

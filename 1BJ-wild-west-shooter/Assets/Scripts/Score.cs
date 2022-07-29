@@ -40,7 +40,7 @@ public class Score : MonoBehaviour
             {
                 // 1000 points if you fire immediately
                 // less points if it takes you 4 seconds
-                gameManager.score += (1000 - (((int)((gameManager.timer.timeElapsed)*10.0f) * 10) * 1));
+                //gameManager.score += (1000 - (((int)((gameManager.timer.timeElapsed)*10.0f) * 10) * 1));
             }
 /*
 */
