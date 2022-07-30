@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int highScore = 0;
 
-    private bool playerLost = false;
+    public bool playerLost = false;
 
     // The timer remaning in a round for the timer script
     public float roundTime;
