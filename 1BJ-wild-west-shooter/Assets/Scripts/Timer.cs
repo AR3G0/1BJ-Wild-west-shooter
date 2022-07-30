@@ -38,7 +38,7 @@ public class Timer : MonoBehaviour
             manager.GetComponent<GameManager>().roundOver = true;
         }
 
-        timerText.text = gameManager.timeRemaining.ToString();
+        timerText.text = gameManager.timeRemaining.ToString("2F");
 
 
         // display time remaining
