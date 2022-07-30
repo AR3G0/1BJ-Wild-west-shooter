@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4684006122542823521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5765684491739816906}
+  - component: {fileID: 1698404344375917347}
+  m_Layer: 0
+  m_Name: feedback_SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5765684491739816906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684006122542823521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.12285, y: 4.262546, z: 0.029128645}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1698404344375917347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684006122542823521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139c9fa208ac4c34882b6d98e8f6255a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 3d6b1437840dbd340a4a1f939abb5dde, type: 3}
+  - {fileID: 8300000, guid: f4d5f91eded937540a13abc3fdfccbdb, type: 3}
+  - {fileID: 8300000, guid: 0396abefc2886fe4ca0feae5c6e6459b, type: 3}
+  - {fileID: 8300000, guid: 52b41c93ac7d60a4a9d115e8e7fc46d8, type: 3}
+  - {fileID: 8300000, guid: bb835d89f0fc26a4a8855527985be709, type: 3}
+  - {fileID: 8300000, guid: f4be70a71462c35428d8eebd9b6cff11, type: 3}
+  - {fileID: 8300000, guid: d7b4d5b40bf6cb242a6ecb026d078d1e, type: 3}
+  - {fileID: 8300000, guid: 9f0e1a057f10eeb479d2527bec6e02a1, type: 3}
+  - {fileID: 8300000, guid: e8ba93fb50116704ba4abe2eca61e7c6, type: 3}
+  success: 0
+  innocentKilled: 0
