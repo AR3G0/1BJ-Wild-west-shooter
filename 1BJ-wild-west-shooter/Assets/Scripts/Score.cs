@@ -16,6 +16,22 @@ public class Score : MonoBehaviour
     public GameObject manager;
     public GameManager gameManager;
 
+    private static Score scoreKeeper;
+    /*
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+
+        // No duplicate score managers
+        if (scoreKeeper == null) {
+            scoreKeeper = this;
+        } 
+        else {
+            Object.Destroy(gameObject);
+        }
+    }
+    */
+
     // Start is called before the first frame update
     void Start()
     {

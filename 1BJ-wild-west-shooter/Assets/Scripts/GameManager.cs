@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public int roundNumber;
     public bool roundOver = false;
     public bool resultsTrigger = false;
-    public bool nextRoundInvoked = false;
+    public bool nextSceneInvoked = false;
 
     public int score = 0;
     public int highScore = 0;
@@ -17,14 +17,18 @@ public class GameManager : MonoBehaviour
 
     // The timer remaning in a round for the timer script
     public float timeRemaining;
+    public float roundTime;
 
     // fetch the person generator
     public GameObject person;
     public PersonGen personGen;
     public Vector3 daSpot;
 
-    public GameObject playerGun;
+    // player's gun
+    public GameObject playerGunObject1;
+    public GameObject playerGunObject2;
 
+    // round status
     private bool newSceneFlag = false;
     private bool playerShot = false;
 
@@ -39,7 +43,7 @@ public class GameManager : MonoBehaviour
             managerInstance = this;
         } 
         else {
-            DestroyObject(gameObject);
+            Object.Destroy(gameObject);
         }
     }
 
@@ -61,6 +65,9 @@ public class GameManager : MonoBehaviour
             // Shoot
             if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("Gameplay"))
             {
+                GameObject playerGun1 = Instantiate(playerGunObject1, new Vector3(1f, -.5f, -6f), Quaternion.identity);
+                playerGun1.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                Invoke("PlayerGunAnimation1", 0.1f);
                 playerShot = true;
                 roundOver = true;
             }
@@ -86,9 +93,7 @@ public class GameManager : MonoBehaviour
         if (newSceneFlag == false && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gameplay"))
         {
             // Create round components
-            //GameObject newClock = Instantiate(clock);
             GameObject newPerson = Instantiate(person, new Vector3(daSpot.x, daSpot.y, -1f), Quaternion.identity);
-            //timer = newClock.GetComponent<Timer>();
             personGen = newPerson.GetComponent<PersonGen>();
             newSceneFlag = true;
         }
@@ -99,6 +104,7 @@ public class GameManager : MonoBehaviour
             resultsTrigger = false;
         }
 
+        // End of round
         if ((roundOver == true) && (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Gameplay")))
         {
             // determine outcome
@@ -107,51 +113,77 @@ public class GameManager : MonoBehaviour
             {
                 playerLost = true;
                 // animation of player being shot
-                // then go to lose screen
-                // possible lose screen: player's own funeral
-                SceneManager.LoadScene("GameOver");
+                // sfx: gun shot + evil laugh or crowd gasp
             }
             // LOSE: shot innocent
             else if ((playerShot == true) && (personGen.guilty == false))
             {
                 playerLost = true;
-                // go to lose screen
-                // possible lose screen: player attends their funeral
-                SceneManager.LoadScene("GameOver");
+                // animation of player shooting them, them going down?
+                // sfx: gun shot + crowd gasp
             }
 
             // WIN: didn't shoot innocent
             else if ((playerShot == false) && (personGen.guilty == false))
             {
-                // animation or sound effect of innocent being relieved (phew)
-                // then next person
+                // sfx: person leaving + "phew"
             }
             // WIN: shot baddie
             else if ((playerShot == true) && (personGen.guilty == true))
             {
-                // animation and sound effect of baddie going down
-                // then next person
+                // animation of player shooting them, baddie going down?
+                // sfx: gun shot + fanfare
             }
 
-            // wait two seconds before launching next round
-            if ((nextRoundInvoked == false) && (playerLost == false))
+            // wait two seconds for results of player actions
+            if ((nextSceneInvoked == false) && (playerLost == false))
             {
                 Invoke("NextRound", 2.0f);
                 resultsTrigger = true;
-                nextRoundInvoked = true;
+                nextSceneInvoked = true;
+            }
+            else if ((nextSceneInvoked == false) && (playerLost == true))
+            {
+                Invoke("GameOver", 2.0f);
+                resultsTrigger = true;
+                nextSceneInvoked = true;
             }
         }
 
     }
     
+    void PlayerGunAnimation1()
+    {
+        //playerGunObject1.SetActive(false);
+        GameObject playerGun2 = Instantiate(playerGunObject2, new Vector3(1f, -.5f, -6f), Quaternion.identity);
+        playerGun2.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+        Invoke("PlayerGunAnimation2", 0.1f);
+
+    }
+    void PlayerGunAnimation2()
+    {
+
+    }
+
     void NextRound()
     {
-        newSceneFlag = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         roundNumber += 1;
-        nextRoundInvoked = false;
+        newSceneFlag = false;
+        nextSceneInvoked = false;
         playerShot = false;
         roundOver = false;
+        playerLost = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void GameOver()
+    {
+        newSceneFlag = false;
+        nextSceneInvoked = false;
+        playerShot = false;
+        roundOver = false;
+        playerLost = false;
+        SceneManager.LoadScene("GameOver");
     }
 
 }

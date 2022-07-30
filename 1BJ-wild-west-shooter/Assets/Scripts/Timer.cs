@@ -9,6 +9,8 @@ public class Timer : MonoBehaviour
     public TMP_Text timerText;
     public float timeElapsed;
 
+    private float timerDisplay;
+
     // fetch game manager
     public GameObject manager;
     public GameManager gameManager;
@@ -21,13 +23,14 @@ public class Timer : MonoBehaviour
 
         // Start at 5 seconds Round 1, and less thereafter
         gameManager.timeRemaining = 6 - (1 * ((manager.GetComponent<GameManager>().roundNumber-1)/10));
+        gameManager.roundTime = gameManager.timeRemaining;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (gameManager.timeRemaining > 0)
+        if ((gameManager.timeRemaining > 0) && (gameManager.roundOver == false))
         {
             gameManager.timeRemaining -= Time.deltaTime;
             timeElapsed += Time.deltaTime;
@@ -38,7 +41,12 @@ public class Timer : MonoBehaviour
             manager.GetComponent<GameManager>().roundOver = true;
         }
 
-        timerText.text = gameManager.timeRemaining.ToString("2F");
+        timerDisplay = ((Mathf.Round(gameManager.timeRemaining * 100.0f)) / 100.0f);
+        if (timerDisplay < 0)
+        {
+            timerDisplay = 0.0f * 10.0f;
+        }
+        timerText.text = timerDisplay.ToString();
 
 
         // display time remaining

@@ -96,6 +96,7 @@ MonoBehaviour:
   - {fileID: 5177762472789921158, guid: ab96cb64dc57bf24e9aadc8c4fdb82d3, type: 3}
   - {fileID: 1504617350066599869, guid: 5f061f28630107044b915cdc0c295944, type: 3}
   - {fileID: 3611319189745304467, guid: ac4061a8d4c1ed840a68dfa27d1110d8, type: 3}
+  speechBubbleObject: {fileID: 8203074415033883047, guid: be92b107bb170bd4cb2130e5cbdd8a26, type: 3}
   manager: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!212 &1548695184570884321

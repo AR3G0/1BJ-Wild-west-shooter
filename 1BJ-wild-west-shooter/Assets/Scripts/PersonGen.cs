@@ -7,7 +7,7 @@ public class PersonGen : MonoBehaviour
     // initialize features
     public bool guilty;
 
-    // arbitrary
+    // arbitrary appearacne
     private int hat;
     private int hair;
     private int facialHair;
@@ -30,6 +30,8 @@ public class PersonGen : MonoBehaviour
     public GameObject[] itemObjects;
     public GameObject[] speechObjects;
 
+    public GameObject speechBubbleObject;
+
     // TELL CALCULATION
     // guilty, neutral, innocent
     // each shall carry a number from 1 (guilty) to 3 (innocent)
@@ -40,7 +42,7 @@ public class PersonGen : MonoBehaviour
 
     // list for tell selection
     private List<int> tellSelect = new List<int>();
-
+    // chosen guilt of any given tell
     private int tellChosen;
 
     // initialie the child and head object so we can change their color
@@ -204,12 +206,14 @@ public class PersonGen : MonoBehaviour
             case 0:
                 GameObject newObject = Instantiate(hatObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -4f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(hatObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -4f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
-            newObject.transform.parent = gameObject.transform;
+            //newObject.transform.parent = gameObject.transform;
             // 2 and three is no hat
         }
 
@@ -220,20 +224,24 @@ public class PersonGen : MonoBehaviour
             case 0:
                 GameObject newObject = Instantiate(hairObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(hairObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 2:
                 newObject = Instantiate(hairObjects[2], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 3:
                 newObject = Instantiate(hairObjects[3], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
-            newObject.transform.parent = gameObject.transform;
+            //newObject.transform.parent = gameObject.transform;
         }
 
         ///// FACIAL HAIR /////
@@ -243,13 +251,15 @@ public class PersonGen : MonoBehaviour
             case 0:
                 GameObject newObject = Instantiate(facialHairObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(facialHairObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             // 2 and three are stashless
-            newObject.transform.parent = gameObject.transform;
+            //newObject.transform.parent = gameObject.transform;
         }
 
         ///// OUTFITS /////
@@ -259,24 +269,29 @@ public class PersonGen : MonoBehaviour
             case 0:
                 GameObject newObject = Instantiate(outfitsObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(outfitsObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 2:
                 newObject = Instantiate(outfitsObjects[2], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 3:
                 newObject = Instantiate(outfitsObjects[3], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 4:
                 newObject = Instantiate(outfitsObjects[4], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
-            newObject.transform.parent = gameObject.transform;
+            //newObject.transform.parent = gameObject.transform;
         }
 
         // --- tells --- //
@@ -296,16 +311,18 @@ public class PersonGen : MonoBehaviour
             case 0:
                 GameObject newObject = Instantiate(faceObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(faceObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 2:
                 newObject = Instantiate(faceObjects[2], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
-           newObject.transform.parent = gameObject.transform;
         }
         
         ///// DECORUM [TELL] /////
@@ -324,25 +341,30 @@ public class PersonGen : MonoBehaviour
             case 0:
                 GameObject newObject = Instantiate(decorumObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2.5f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(decorumObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2.5f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 2:
                 newObject = Instantiate(decorumObjects[2], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2.5f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 3:
                 newObject = Instantiate(decorumObjects[3], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2.5f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             // we skip to case 6 to allow the neutral range to incorporate the NULL option
             case 6:
                 newObject = Instantiate(decorumObjects[4], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2.5f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
-            newObject.transform.parent = gameObject.transform;
+            //newObject.transform.parent = gameObject.transform;
             // 4 & 5 are no decorum
         }
 
@@ -362,24 +384,29 @@ public class PersonGen : MonoBehaviour
             case 0:
                 GameObject newObject = Instantiate(itemObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(itemObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 2:
                 newObject = Instantiate(itemObjects[2], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 3:
                 newObject = Instantiate(itemObjects[3], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 5:
                 newObject = Instantiate(itemObjects[4], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
-            newObject.transform.parent = gameObject.transform;
+            //newObject.transform.parent = gameObject.transform;
         }
 
         ///// SPEECH [TELL] /////
@@ -393,70 +420,92 @@ public class PersonGen : MonoBehaviour
             speech = Random.Range(10, 15);
         }
         //speech = Random.Range(0, 15);
+        Invoke("SpeechTime", Random.Range((gameManager.roundTime / 3.0f), (gameManager.roundTime / 2.0f)));
+    }
+
+    void SpeechTime()
+    {
         switch (speech)
         {
             case 0:
                 GameObject newObject = Instantiate(speechObjects[0], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 1:
                 newObject = Instantiate(speechObjects[1], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 2:
                 newObject = Instantiate(speechObjects[2], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 3:
                 newObject = Instantiate(speechObjects[3], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 4:
                 newObject = Instantiate(speechObjects[4], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 5:
                 newObject = Instantiate(speechObjects[5], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 6:
                 newObject = Instantiate(speechObjects[6], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 7:
                 newObject = Instantiate(speechObjects[7], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 8:
                 newObject = Instantiate(speechObjects[8], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 9:
                 newObject = Instantiate(speechObjects[9], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 10:
                 newObject = Instantiate(speechObjects[10], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 11:
                 newObject = Instantiate(speechObjects[11], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 12:
                 newObject = Instantiate(speechObjects[12], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 13:
                 newObject = Instantiate(speechObjects[13], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
             case 14:
                 newObject = Instantiate(speechObjects[14], new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -3f), Quaternion.identity);
                 newObject.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+                newObject.transform.parent = this.gameObject.transform;
                 break;
-            newObject.transform.parent = gameObject.transform;
         }
+        GameObject speechBubble = Instantiate(speechBubbleObject, new Vector3(gameManager.daSpot.x, gameManager.daSpot.y, -2f), Quaternion.identity);
+        speechBubble.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+        speechBubble.transform.parent = this.gameObject.transform;
     }
 
     // Update is called once per frame
