@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     private bool playerLost = false;
 
     // The timer remaning in a round for the timer script
-    public float timeRemaining;
     public float roundTime;
+    public float timeElapsed;
+    public float timeRemaining;
 
     // fetch the person generator
     public GameObject person;

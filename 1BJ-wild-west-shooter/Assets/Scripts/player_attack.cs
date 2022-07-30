@@ -8,13 +8,11 @@ public class player_attack : MonoBehaviour
     public float speed;
     public Sprite gunFired;
 
-    private SpriteRenderer spriteComponet;
+    private SpriteRenderer spriteComponent;
 
     private void Start()
     {
-        spriteComponet = GetComponent<SpriteRenderer>();
-        
-
+        spriteComponent = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -26,7 +24,7 @@ public class player_attack : MonoBehaviour
         }
         else
         {
-            spriteComponet.sprite = gunFired;
+            spriteComponent.sprite = gunFired;
         }
     }
 }

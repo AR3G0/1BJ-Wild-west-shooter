@@ -528,7 +528,7 @@ public class PersonGen : MonoBehaviour
         // End of round effects
         if (gameManager.resultsTrigger == true && guilty == false)
         {
-            Destroy(this.gameObject);
+            Invoke("Dead", .25f);
         }
         else if (gameManager.resultsTrigger == true && guilty == true)
         {
@@ -537,5 +537,10 @@ public class PersonGen : MonoBehaviour
         }
 
         // generate face animations and speech bubbles (emergent tells)
+    }
+
+    void Dead()
+    {
+        Destroy(this.gameObject);
     }
 }
