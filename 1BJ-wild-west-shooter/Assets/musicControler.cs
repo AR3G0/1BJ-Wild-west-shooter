@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class musicControler : MonoBehaviour
 {
     public AudioClip[] music;
-    public AudioClip[] SFX;
     private AudioSource audioSource;
     private GameManager gameManagerScript;
 
