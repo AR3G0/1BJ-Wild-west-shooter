@@ -533,7 +533,7 @@ public class PersonGen : MonoBehaviour
         else if (gameManager.resultsTrigger == true && guilty == true)
         {
             gun.gameObject.SetActive(true);
-            audio.Play(0);
+            //audio.Play(0);
         }
 
         // generate face animations and speech bubbles (emergent tells)
