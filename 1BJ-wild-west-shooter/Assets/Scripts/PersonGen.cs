@@ -7,6 +7,9 @@ public class PersonGen : MonoBehaviour
     // initialize features
     public bool guilty;
 
+    //child objects
+    private GameObject gun;
+
     // arbitrary appearacne
     private int hat;
     private int hair;
@@ -59,6 +62,9 @@ public class PersonGen : MonoBehaviour
         // fetch game manager
         manager = GameObject.FindWithTag("manager");
         gameManager = manager.GetComponent<GameManager>();
+
+        //fetch child
+        gun = transform.GetChild(1).gameObject;
 
         //fetch the head and body object so we can change their sprite render
         Transform head = transform.Find("Head");
@@ -514,9 +520,13 @@ public class PersonGen : MonoBehaviour
 
 
         // End of round effects
-        if (gameManager.resultsTrigger == true)
+        if (gameManager.resultsTrigger == true && guilty == false)
         {
             Destroy(this.gameObject);
+        }
+        else if (gameManager.resultsTrigger == true && guilty == true)
+        {
+            gun.gameObject.SetActive(true);
         }
 
         // generate face animations and speech bubbles (emergent tells)
