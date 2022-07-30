@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public PersonGen personGen;
     public Vector3 daSpot;
 
+    public GameObject playerGun;
 
     private bool newSceneFlag = false;
     private bool playerShot = false;
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -54,6 +55,9 @@ public class GameManager : MonoBehaviour
         // The Player Button 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            
+            Instantiate(playerGun);
+
             // Shoot
             if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName ("Gameplay"))
             {
