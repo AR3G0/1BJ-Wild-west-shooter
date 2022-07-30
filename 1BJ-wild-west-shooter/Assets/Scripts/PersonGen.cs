@@ -16,6 +16,9 @@ public class PersonGen : MonoBehaviour
     private int facialHair;
     private int outfits;
 
+    // Audio
+    private AudioSource audio;
+
     // tells
     private int face;
     private int decorum;
@@ -65,6 +68,9 @@ public class PersonGen : MonoBehaviour
 
         //fetch child
         gun = transform.GetChild(1).gameObject;
+
+        //fetch audio
+        audio = gameManager.GetComponent<AudioSource>();   
 
         //fetch the head and body object so we can change their sprite render
         Transform head = transform.Find("Head");
@@ -527,6 +533,7 @@ public class PersonGen : MonoBehaviour
         else if (gameManager.resultsTrigger == true && guilty == true)
         {
             gun.gameObject.SetActive(true);
+            audio.Play(0);
         }
 
         // generate face animations and speech bubbles (emergent tells)
