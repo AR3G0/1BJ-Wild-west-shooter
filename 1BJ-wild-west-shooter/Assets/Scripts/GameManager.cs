@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
     void PlayerGunAnimation1()
     {
         //playerGunObject1.SetActive(false);
-        GameObject playerGun2 = Instantiate(playerGunObject2, new Vector3(1f, -.5f, -6f), Quaternion.identity);
+        GameObject playerGun2 = Instantiate(playerGunObject2, new Vector3(3f, -.5f, -6f), Quaternion.identity);
         playerGun2.transform.localScale = new Vector3(0.75f, 0.75f, 1);
         Invoke("PlayerGunAnimation2", 0.1f);
 
